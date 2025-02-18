@@ -90,7 +90,9 @@ jobs:
             -DLLAMA_BUILD_COMMON=ON `
             -DLLAMA_BUILD_SERVER=ON `
             -DLLAMA_LLGUIDANCE=ON `
-            -DGGML_LTO=ON
+            -DGGML_LTO=ON `
+            -DCURL_LIBRARY="$env:RUNNER_TEMP/libcurl/lib/libcurl.dll.a" `
+            -DCURL_INCLUDE_DIR="$env:RUNNER_TEMP/libcurl/include"
           cmake --build build -j ${env:NUMBER_OF_PROCESSORS}
           md "build\bin\rocblas\library\"
           cp "${env:HIP_PATH}\bin\hipblas.dll" "build\bin\"
