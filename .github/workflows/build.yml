@@ -78,7 +78,6 @@ jobs:
             -DBUILD_SHARED_LIBS=OFF `
             -DAMDGPU_TARGETS=gfx1030 `
             -DLLAMA_CURL=ON `
-            -DGGML_STATIC=ON `
             -DLLAMA_BUILD_COMMON=ON `
             -DLLAMA_BUILD_SERVER=ON `
             -DLLAMA_LLGUIDANCE=ON `
