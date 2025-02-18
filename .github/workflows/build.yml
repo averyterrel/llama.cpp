@@ -1235,7 +1235,7 @@ jobs:
 
     strategy:
       matrix:
-        gpu_target: [gfx1100, gfx1101, gfx1030]
+        gpu_target: [gfx1030]
 
     steps:
       - name: Clone
@@ -1276,7 +1276,16 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release `
             -DAMDGPU_TARGETS=${{ matrix.gpu_target }} `
             -DGGML_HIP=ON `
-            -DGGML_RPC=ON
+            -DGGML_RPC=ON `
+            -DGGML_NATIVE=ON `
+            -DBUILD_SHARED_LIBS=OFF `
+            -DAMDGPU_TARGETS=gfx1030 `
+            -DLLAMA_CURL=ON `
+            -DGGML_STATIC=ON `
+            -DLLAMA_BUILD_COMMON=ON `
+            -DLLAMA_BUILD_SERVER=ON `
+            -DLLAMA_LLGUIDANCE=ON `
+            -DGGML_LTO=ON
           cmake --build build -j ${env:NUMBER_OF_PROCESSORS}
           md "build\bin\rocblas\library\"
           cp "${env:HIP_PATH}\bin\hipblas.dll" "build\bin\"
