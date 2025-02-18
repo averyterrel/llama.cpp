@@ -62,6 +62,15 @@ jobs:
         run: |
           & 'C:\Program Files\AMD\ROCm\*\bin\clang.exe' --version
 
+      - name: libCURL
+        id: get_libcurl
+        env:
+          CURL_VERSION: 8.6.0_6
+        run: |
+          curl.exe -o $env:RUNNER_TEMP/curl.zip -L "https://curl.se/windows/dl-${env:CURL_VERSION}/curl-${env:CURL_VERSION}-win64-mingw.zip"
+          mkdir $env:RUNNER_TEMP/libcurl
+          tar.exe -xvf $env:RUNNER_TEMP/curl.zip --strip-components=1 -C $env:RUNNER_TEMP/libcurl
+
       - name: Build
         id: cmake_build
         run: |
